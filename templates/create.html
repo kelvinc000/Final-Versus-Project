@@ -1,0 +1,44 @@
+<!doctype html>
+
+<title>Create Bracket</title>
+
+<h2>Create a new bracket</h2>
+
+<p>Seed 1 plays seed 2, seed 3 plays seed 4, and so on.</p>
+
+<form action='/create' method='post'>
+  <label for='title'>Title:</label>
+  <input type='text' name='title' required /> <br />
+
+  <label for='description'>Description:</label>
+  <input type='text' name='description' /> <br />
+
+  <label for='entrant_count'>Entrant count:</label>
+  <select name='entrant_count' id='entrant_count' onchange='renderEntrantFields()'>
+    <option value='4'>4</option>
+    <option value='8' selected>8</option>
+    <option value='16'>16</option>
+    <option value='32'>32</option>
+  </select> <br /> <br />
+
+  <div id='entrant_fields'></div>
+
+  <input type='submit' value='Create bracket' />
+</form>
+
+<script>
+  function renderEntrantFields() {
+    var n   = parseInt(document.getElementById('entrant_count').value);
+    var box = document.getElementById('entrant_fields');
+    var html = '';
+    for (var i = 1; i <= n; i++) {
+      html += "<label>Seed " + i + ":</label> ";
+      html += "<input type='text' name='entrant_" + i + "' required /> <br />";
+    }
+    box.innerHTML = html;
+  }
+  renderEntrantFields();
+</script>
+
+<br />
+<a href='/'>Home</a>

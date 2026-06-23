@@ -1,0 +1,33 @@
+<!doctype html>
+
+<title>VERSUS</title>
+
+<h1>VERSUS</h1>
+
+{% if message %}
+  <h2>{{message}}</h2>
+{% endif %}
+
+{% if name %}
+  <p>Hello, {{name}}.</p>
+  <form method='post' action='/logout'>
+    <input type='submit' value='Logout' />
+  </form>
+{% else %}
+  <p>Tournament bracket prediction and voting.</p>
+{% endif %}
+
+<ul>
+  <li><a href='/browse'>Browse brackets</a></li>
+  <li><a href='/leaderboard'>Leaderboard</a></li>
+  {% if name %}
+    <li><a href='/create'>Create a bracket</a></li>
+    <li><a href='/user/{{uid}}'>My profile</a></li>
+    {% if name == 'admin' %}
+      <li><a href='/admin'>Admin console</a></li>
+    {% endif %}
+  {% else %}
+    <li><a href='/login'>Login</a></li>
+    <li><a href='/register'>Register</a></li>
+  {% endif %}
+</ul>

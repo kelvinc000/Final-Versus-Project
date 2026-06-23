@@ -1,0 +1,40 @@
+<!doctype html>
+
+<title>Browse Brackets</title>
+
+<h2>All brackets</h2>
+
+<!-- bracket = (bracket_id, title, status, entrant_count, created_at, host_username) -->
+
+{% if brackets %}
+  <table border='1' cellpadding='4'>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Host</th>
+      <th>Entrants</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th></th>
+    </tr>
+    {% for b in brackets %}
+      <tr>
+        <td>{{b[0]}}</td>
+        <td>{{b[1]}}</td>
+        <td>{{b[5]}}</td>
+        <td>{{b[3]}}</td>
+        <td>{{b[2]}}</td>
+        <td>{{b[4]}}</td>
+        <td><a href='/bracket{{b[0]}}'>view</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No brackets yet.</p>
+{% endif %}
+
+<br />
+<ul>
+  <li><a href='/create'>Create a bracket</a></li>
+  <li><a href='/'>Home</a></li>
+</ul>

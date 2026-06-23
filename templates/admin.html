@@ -1,0 +1,38 @@
+<!doctype html>
+
+<title>Admin Console — VERSUS</title>
+
+<h1>Admin Console</h1>
+
+<form method='POST' action='/admin'>
+  <textarea name='query' rows='6' cols='60' placeholder='Enter SQL query...'>{{query}}</textarea>
+  <br />
+  <input type='submit' value='Run Query' />
+</form>
+
+{% if error %}
+  <p style='color:red'><b>Error:</b> {{error}}</p>
+{% endif %}
+
+{% if result %}
+  <h3>Results</h3>
+  <table border='1' cellpadding='4'>
+    <tr>
+      {% for col in result.cols %}
+        <th>{{col}}</th>
+      {% endfor %}
+    </tr>
+    {% for row in result.rows %}
+      <tr>
+        {% for cell in row %}
+          <td>{{cell}}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+
+<br />
+<ul>
+  <li><a href='/'>Home</a></li>
+</ul>

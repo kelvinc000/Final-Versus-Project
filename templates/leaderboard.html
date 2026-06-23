@@ -1,0 +1,34 @@
+<!doctype html>
+
+<!-- rows = (user_id, username, total_points, rank_position, dense_rank_position, percentile) -->
+
+<title>Leaderboard — VERSUS</title>
+
+<h1>Leaderboard</h1>
+
+{% if rows %}
+  <table border='1' cellpadding='4'>
+    <tr>
+      <th>Rank</th>
+      <th>User</th>
+      <th>Points</th>
+      <th>Percentile</th>
+    </tr>
+    {% for r in rows %}
+      <tr {% if r[0] == current_uid %}style="background:#fffbe6"{% endif %}>
+        <td>{{r[3]}}</td>
+        <td><a href='/user/{{r[0]}}'>{{r[1]}}</a></td>
+        <td>{{r[2]}}</td>
+        <td>{{(r[4] * 100)|round(1)}}%</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No scores yet.</p>
+{% endif %}
+
+<br />
+<ul>
+  <li><a href='/browse'>Browse brackets</a></li>
+  <li><a href='/'>Home</a></li>
+</ul>

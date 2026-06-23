@@ -1,0 +1,46 @@
+<!doctype html>
+
+<!-- bracket = (bracket_id, title, description, status, entrant_count, host_username, host_user_id, prediction_deadline) -->
+<!-- path row = (matchup_id, round_number, slot_number, winner_id, slot_a, slot_b, vote_count_a, vote_count_b, entrant_a_name, entrant_b_name, winner_name) -->
+
+<title>Champion Path — {{bracket[1]}}</title>
+
+<h1>{{bracket[1]}}</h1>
+<h2>🏆 Champion Path</h2>
+
+<p>Host: {{bracket[5]}} | Entrants: {{bracket[4]}}</p>
+
+{% if path %}
+  {% set champion = path|last %}
+  <p><b>Champion: {{champion[10]}}</b></p>
+
+  <table border='1' cellpadding='4'>
+    <tr>
+      <th>Round</th>
+      <th>Entrant A</th>
+      <th>Votes A</th>
+      <th>Votes B</th>
+      <th>Entrant B</th>
+      <th>Winner</th>
+    </tr>
+    {% for row in path %}
+      <tr>
+        <td>{{row[1]}}</td>
+        <td>{% if row[8] %}{{row[8]}}{% else %}(TBD){% endif %}</td>
+        <td>{{row[6]}}</td>
+        <td>{{row[7]}}</td>
+        <td>{% if row[9] %}{{row[9]}}{% else %}(TBD){% endif %}</td>
+        <td><b>{{row[10]}}</b></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No champion path data found.</p>
+{% endif %}
+
+<br />
+<ul>
+  <li><a href='/bracket{{bracket[0]}}'>Back to bracket</a></li>
+  <li><a href='/browse'>Browse brackets</a></li>
+  <li><a href='/'>Home</a></li>
+</ul>

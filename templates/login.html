@@ -1,0 +1,25 @@
+<!doctype html>
+
+<title>Login — VERSUS</title>
+
+<h2>Login</h2>
+
+{% if error %}
+  <p style='color:red'>{{error}}</p>
+{% endif %}
+
+<form action='/login' method='post'>
+  <label for='username'>Username:</label>
+  <input type='text' name='username' required /> <br />
+
+  <label for='password'>Password:</label>
+  <input type='password' name='password' required /> <br /><br />
+
+  <input type='submit' value='Login' />
+</form>
+
+<br />
+<ul>
+  <li><a href='/register'>Don't have an account? Register</a></li>
+  <li><a href='/'>Home</a></li>
+</ul>
